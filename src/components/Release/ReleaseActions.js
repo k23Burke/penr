@@ -1,3 +1,4 @@
+import { CALL_API } from 'redux-api-middleware'
 import {
   DROP_TRACK,
   UPDATE_DURATION,
@@ -54,6 +55,19 @@ export function updateAlbum (name) {
 }
 
 export function uploadTrackToAWS () {
+  return {
+    [CALL_API]: {
+      endpoint: 'http://track-bucket-for-releases.s3.amazonaws.com/',
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        'message': {'chat_id': chatId, 'body': messageText, 'user_id': userId}
+      }),
+      types: [CREATE_CHAT_MESSAGE_REQUEST,
+              CREATE_CHAT_MESSAGE_SUCCESS,
+              CREATE_CHAT_MESSAGE_FAILURE]
+    }
+  }
 	// const uuid = uuid.v4()
 	// const formData = new formData()
 	// success_action_status
