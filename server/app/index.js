@@ -40,9 +40,7 @@ const AppPipeline = (db) => {
 
   app.use('/api', routes)
   app.use(ErrorCatchingMiddleWare)
-  console.log(chalk.blue('set up indexHTMLPath!!!!!!!!!'))
   app.get('/*', (req, res) => { res.sendFile(app.get('indexHTMLPath')) })
-
   app.use(ErrorCatchingEndWare)
 
   return app

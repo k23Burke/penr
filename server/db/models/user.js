@@ -1,10 +1,10 @@
-var crypto = require('crypto');
-var _ = require('lodash');
-var Sequelize = require('sequelize');
+import crypto from 'crypto'
+import * as _ from 'lodash'
+import Sequelize from 'sequelize'
 
-import db from '../index'
+import db from '../_db'
 
-module.exports = db.define('user', {
+export default db.define('user', {
     email: {
         type: Sequelize.STRING
     },
@@ -23,6 +23,7 @@ module.exports = db.define('user', {
     google_id: {
         type: Sequelize.STRING
     }
+
 }, {
     instanceMethods: {
         sanitize: function () {
