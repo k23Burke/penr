@@ -3,23 +3,26 @@ var fs = require('fs');
 var path = require('path');
 
 import usersRoute from './users'
+import releasesRoute from './releases'
 
 
 
 
-// var ensureAdminAuthenticated = function(req, res, next) {
-//     if(req.isAuthenticated()) {
-//         next();
-//     } else {
-//         res.status(401).end();
-//     }
-// };
+const ensureAdminAuthenticated = (req, res, next) => {
+    if(req.isAuthenticated()) {
+        next();
+    } else {
+        res.status(401).end();
+    }
+};
 
 // //anything below this users need to be authenticated
-// router.use('/', ensureAdminAuthenticated);
 
 // router.use('/users', require('./users'));
-router.use('/users', usersRoute);
+router.use('/users', usersRoute)
+router.use('/', ensureAdminAuthenticated)
+
+router.use('/releases', releasesRoute)
 // router.use('/projects', require('./projects'));
 // router.use('/aws', require('./aws'));
 // router.use('/forks', require('./forks'));

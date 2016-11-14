@@ -17,7 +17,7 @@ db
 
 
 User.hasMany(Release)
-Release.belongsTo(User)
+// Release.belongsTo(User)
 
 // User.create({ email: 'asd@asd', password: 'asdf' })
 // const release = Release.create({ name: 'blah'}) //, ownerId: 1 })

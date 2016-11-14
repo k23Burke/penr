@@ -4,6 +4,7 @@ import util from 'util'
 import express from 'express'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
+import authentication from './authentication'
 
 import routes from './routes/index'
 
@@ -14,12 +15,18 @@ const env = require(path.join(rootPath, './server/env'))
 const app = express()
 
 const AppPipeline = (db) => {
-  //
+
   app.setValue = app.set.bind(app)
   app.getValue = (path) => app.get(path)
   app.setValue('env', env)
   app.setValue('projectRoot', rootPath)
   app.setValue('indexHTMLPath', indexPath)
+
+  // Parsing
+  app.use(cookieParser());
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
+
   // app.setValue('faviconPath', faviconPath)
   app.setValue('log', logMiddleware)
 
@@ -28,15 +35,12 @@ const AppPipeline = (db) => {
     app.use(app.getValue('log'));
   // }
 
+  // connect auth to app
+  authentication(app, db)
+
   // Static stuff
   // app.use(favicon(app.getValue('faviconPath')));
   app.use(express.static(path.join(rootPath, './dist')));
-
-  // Parsing
-  app.use(cookieParser());
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: true }));
-  // require('./authentication')(app, db);
 
   app.use('/api', routes)
   app.use(ErrorCatchingMiddleWare)

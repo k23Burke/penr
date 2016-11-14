@@ -8,6 +8,9 @@ const initalState = {
 		imageFile: new Image(),
 		imageSelected: false
 		// TODO: label: ''
+	}),
+	auth: fromJS({
+		attempted: false
 	})
 }
 
