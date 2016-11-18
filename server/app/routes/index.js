@@ -9,7 +9,8 @@ import releasesRoute from './releases'
 
 
 const ensureAdminAuthenticated = (req, res, next) => {
-    if(req.isAuthenticated()) {
+	console.log("decoded", req.decoded)
+    if(req.decoded) {
         next();
     } else {
         res.status(401).end();

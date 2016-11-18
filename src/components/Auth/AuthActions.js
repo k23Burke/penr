@@ -21,3 +21,31 @@ export function loginAttempt (username, password) {
     }
   }
 }
+
+
+export function getStuff (token) {
+  return {
+    [CALL_API]: {
+      endpoint: 'http://localhost:3000/api/releases/1',
+      method: 'GET',
+      headers: {
+      	'x-access-token': token
+      },
+      types: ['GET_STUFF_REQUEST',
+						  'GET_STUFF_SUCCESS',
+						  'GET_STUFF_FAILURE']
+    }
+  }
+}
+
+export function logout () {
+  return {
+    [CALL_API]: {
+      endpoint: 'http://localhost:3000/logout',
+      method: 'GET',
+      types: ['AUTH_LOGIN_REQUEST',
+						  'AUTH_LOGIN_SUCCESS',
+						  'AUTH_LOGIN_FAILURE']
+    }
+  }
+}

@@ -22,6 +22,9 @@ const AppPipeline = (db) => {
   app.setValue('projectRoot', rootPath)
   app.setValue('indexHTMLPath', indexPath)
 
+  app.use(express.static(path.join(rootPath, './dist')));
+
+
   // Parsing
   app.use(cookieParser());
   app.use(bodyParser.json());
@@ -40,7 +43,6 @@ const AppPipeline = (db) => {
 
   // Static stuff
   // app.use(favicon(app.getValue('faviconPath')));
-  app.use(express.static(path.join(rootPath, './dist')));
 
   app.use('/api', routes)
   app.use(ErrorCatchingMiddleWare)

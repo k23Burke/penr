@@ -52,6 +52,7 @@
     "fs": "0.0.1-security",
     "immutable": "^3.8.1",
     "jsmediatags": "^3.3.0",
+    "jsonwebtoken": "^7.1.9",
     "lodash": "^4.16.2",
     "moment": "^2.15.1",
     "node-uuid": "^1.4.7",
