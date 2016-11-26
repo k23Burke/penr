@@ -3,16 +3,14 @@ import { Map } from 'immutable'
 import thunk from 'redux-thunk'
 import { apiMiddleware } from 'redux-api-middleware'
 import logger from 'redux-logger'
-import reducer from './config/combineReducers'
 
-// custom Middleware
-// import getStateInjector from './middleware/getStateInjector.js'
+import reducer from './config/combineReducers'
+import middleware from './config/authMiddleware.js'
 
 const stateTransformer = (state) => {
   // Makes Immutable maps compliant with state management
   return Map(state).toJS()
 }
-let enhancer
 
 let createLogger = require('redux-logger')
 const loggerMiddleware = createLogger({
@@ -20,13 +18,13 @@ const loggerMiddleware = createLogger({
 })
 
 
-enhancer = compose(
+let enhancer = compose(
   applyMiddleware(
     thunk,
+    middleware.apiAuthHeader,
     apiMiddleware,
+    middleware.authLocalManager,
     loggerMiddleware
-    // getStateInjector,
-    // logger()
   )
 )
 

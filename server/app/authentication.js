@@ -14,10 +14,7 @@ module.exports = function (app, db) {
     User.findOne({ where: { email: req.body.username } })
       .then( user => {
         if (!user || !user.correctPassword(req.body.password)) {
-          res.status(401).json({
-            success: false,
-            message: 'No authenticated user.'
-          })
+          errorResponse(res, 401, 'No authenticated user.')
         } else {
           var token = jwt.sign(user.sanitize(), app.getValue('env').SESSION_SECRET, {
             expiresIn: "1m"
@@ -30,37 +27,24 @@ module.exports = function (app, db) {
           })
         }
       })
-      .catch(() => {
-        let err
-        err = new Error('No authenticated user.');
-        err.status = 401;
-        next(err)
-      })
+      .catch(() => errorResponse(res, 401, 'No authenticated user.'))
 
   })
 
   app.use(function(req, res, next) {
-    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    const token = req.body.token || req.query.token || req.headers['x-access-token']
+    console.log('TOKEN', token)
     if (token) {
-      // verifies secret and checks exp
       jwt.verify(token, app.getValue('env').SESSION_SECRET, function(err, decoded) {
-        if (err) {
-          res.status(401).json({
-            success: false,
-            message: 'Failed to authenticate token.'
-          })
-        } else {
+        if (err) errorResponse(res, 401, 'Failed to authenticate token.')
+        else {
           // if everything is good, save to request for use in other routes
           req.decoded = decoded;
           next();
         }
       })
-    } else {
-      res.status(403).json({
-        success: false,
-        message: 'No token provided.'
-      });
-
-    }
+    } else errorResponse(res, 403, 'No token provided.')
   })
 }
+
+const errorResponse = (res, status, message) => res.status(status).json({ success: false, message })

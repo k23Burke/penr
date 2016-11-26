@@ -7,7 +7,6 @@ import { hashHistory } from 'react-router'
 import '../style/app.scss'
 
 export class App extends React.Component {
-
   constructor (props) {
     super(props)
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this)
