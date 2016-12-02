@@ -4,19 +4,18 @@ import { AUTH_LOGIN_SUCCESS } from '../constants/ActionTypes'
 
 export const authLocalManager = store => next => action => {
   if (action.type === AUTH_LOGIN_SUCCESS) {
-		console.log('INSIDE AUTH_LOGIN_SUCCESS', localStorage.getItem('resToken'))
-    localStorage.setItem('resToken', action.payload.token)
+    localStorage.setItem('secretToken', action.payload.token)
+  }
+  if (action.type === AUTH_LOGOUT_REQUEST) {
+    localStorage.setItem('secretToken', action.payload.token)
   }
   return next(action)
 }
 
 export const apiAuthHeader = store => next => action => {
-	console.log('ACTION MIDDLEWARE')
   const callApi = action[CALL_API]
-	console.log(callApi.headers)
   if (callApi) {
-  	const token = localStorage.getItem('resToken')
-	console.log('token', token)
+  	const token = localStorage.getItem('secretToken')
     callApi.headers = Object.assign({}, callApi.headers)
     callApi.headers['x-access-token'] = token
   }

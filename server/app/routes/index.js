@@ -17,17 +17,11 @@ const ensureAdminAuthenticated = (req, res, next) => {
     }
 };
 
-// //anything below this users need to be authenticated
-
-// router.use('/users', require('./users'));
 router.use('/users', usersRoute)
+// //anything below this users need to be authenticated
 router.use('/', ensureAdminAuthenticated)
 
 router.use('/releases', releasesRoute)
-// router.use('/projects', require('./projects'));
-// router.use('/aws', require('./aws'));
-// router.use('/forks', require('./forks'));
-
 
 
 // Make sure this is after all of

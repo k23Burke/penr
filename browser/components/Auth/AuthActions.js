@@ -28,9 +28,6 @@ export function getStuff (token) {
     [CALL_API]: {
       endpoint: 'http://localhost:3000/api/releases/1',
       method: 'GET',
-      // headers: {
-      // 	'x-access-token': token
-      // },
       types: ['GET_STUFF_REQUEST',
 						  'GET_STUFF_SUCCESS',
 						  'GET_STUFF_FAILURE']

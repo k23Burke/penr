@@ -6,7 +6,7 @@ import 'babel-polyfill'
 import { applyRouterMiddleware, Router, hashHistory } from 'react-router'
 import useScroll from 'react-router-scroll'
 import initialState from './initialState'
-import configureStore from './configureStore'
+import configureStore from './config/configureStore'
 import appRoutes from './routes'
 
 const store = configureStore(initialState)

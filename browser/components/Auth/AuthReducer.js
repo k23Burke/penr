@@ -12,7 +12,7 @@ export default function(state = Map(), action) {
     case AUTH_LOGIN_SUCCESS :
       return state.set('success', true)
                   .set('token', action.payload.token)
-    case AUTH_LOGIN_REQUEST :
+    case AUTH_LOGIN_FAILURE :
       return state.set('success', false)
   }
   return state;

@@ -4,8 +4,8 @@ import thunk from 'redux-thunk'
 import { apiMiddleware } from 'redux-api-middleware'
 import logger from 'redux-logger'
 
-import reducer from './config/combineReducers'
-import middleware from './config/authMiddleware.js'
+import reducer from './combineReducers'
+import middleware from './authMiddleware.js'
 
 const stateTransformer = (state) => {
   // Makes Immutable maps compliant with state management
