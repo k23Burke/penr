@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js \"test/**/*@(.js|.jsx)\"",
     "test:watch": "npm run test -- --watch",
-    "build": "webpack",
+    "build": "NODE_ENV=production webpack -p --config ./webpack.production.config.js",
     "start": "babel-node ./server/start.js"
   },
   "keywords": [],

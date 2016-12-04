@@ -1,5 +1,5 @@
 import { CALL_API } from 'redux-api-middleware'
-import { AUTH_LOGIN_SUCCESS } from '../constants/ActionTypes'
+import { AUTH_LOGIN_SUCCESS, AUTH_LOGOUT_REQUEST } from '../constants/ActionTypes'
 
 
 export const authLocalManager = store => next => action => {
@@ -7,7 +7,7 @@ export const authLocalManager = store => next => action => {
     localStorage.setItem('secretToken', action.payload.token)
   }
   if (action.type === AUTH_LOGOUT_REQUEST) {
-    localStorage.setItem('secretToken', action.payload.token)
+    localStorage.setItem('secretToken', '')
   }
   return next(action)
 }

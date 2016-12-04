@@ -1,6 +1,7 @@
 module.exports = {
-  "DATABASE_URI": "mongodb://localhost:27017/std",
-  "SESSION_SECRET": "Resonate is somma da best"
+  "DATABASE_URI": "postgres://localhost:5432/uploader",
+  "SESSION_SECRET": "Secret Codez R Kool",
+  "LOGGING": true
   // "TWITTER": {
   //   "consumerKey": "INSERT_TWITTER_CONSUMER_KEY_HERE",
   //   "consumerSecret": "INSERT_TWITTER_CONSUMER_SECRET_HERE",
@@ -16,4 +17,4 @@ module.exports = {
   //   "clientSecret": "INSERT_GOOGLE_CLIENT_SECRET_HERE",
   //   "callbackURL": "INSERT_GOOGLE_CALLBACK_HERE"
   // }
-};
+}

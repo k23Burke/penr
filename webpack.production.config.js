@@ -2,12 +2,7 @@ const webpack = require('webpack')
 
 module.exports = {
   context: __dirname + '/browser',
-  entry: [
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
-    './index.jsx'
-  ],
+  entry: [ './index.jsx' ],
   devtool: 'cheap-module-source-map',
   module: {
     loaders: [{
@@ -35,11 +30,7 @@ module.exports = {
   output: {
     path: __dirname + '/dist',
     publicPath: '/dist/',
-    filename: 'bundle.js'
-  },
-  devServer: {
-    contentBase: './dist',
-    hot: true
+    filename: 'bundle.js' // TODO: add chunkhash
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
@@ -47,7 +38,15 @@ module.exports = {
       children:  true, // Look for common dependencies in all children,
       minChunks: 2, // How many times a dependency must come up before being extracted
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        BABEL_ENV: JSON.stringify('production'),
+        NODE_ENV: JSON.stringify('production')
+      }
+    })
   ]
 
 };
