@@ -4,10 +4,13 @@ import util from 'util'
 import express from 'express'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
+import httpProxy from 'http-proxy'
+
 import authentication from './authentication'
-
 import routes from './routes/index'
+import bundle from '../dev-bundle'
 
+const isProduction = process.env.NODE_ENV === 'production'
 const rootPath = path.join(__dirname, '../../')
 const indexPath = path.join(rootPath, './dist/index.html')
 const faviconPath = path.join(rootPath, './server/app/views/favicon.png')
@@ -24,7 +27,6 @@ const AppPipeline = (db) => {
 
   app.use(express.static(path.join(rootPath, './dist')));
 
-
   // Parsing
   app.use(cookieParser());
   app.use(bodyParser.json());
@@ -38,6 +40,21 @@ const AppPipeline = (db) => {
     app.use(app.getValue('log'));
   // }
 
+  if (!isProduction) {
+    console.log('---------- NOT PRODUCTION -------------')
+    const proxy = httpProxy.createProxyServer({changeOrigin: true})
+    bundle()
+
+    app.get('/dist/*', (req, res) => {
+      console.log('request for webpack-dev-server')
+      proxy.web(req, res, { target: 'http://localhost:8080'})
+    })
+    proxy.on('error', function(e) {
+      console.log('Could not connect to proxy, please try again...')
+    })
+  } else {
+    console.log('######### - IS PRODUCTION - #########')
+  }
   // connect auth to app
   authentication(app, db)
 

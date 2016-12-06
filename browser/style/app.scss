@@ -2,6 +2,9 @@
 @import './skeleton.css';
 @import './variables.scss';
 
+h1 {
+  font-family: "acuta";
+}
 
 .drag-container {
 	background: gray;
@@ -49,7 +52,7 @@ input {
 }
 
 body {
-	background: blue;
+	background: green;
 }
 
 

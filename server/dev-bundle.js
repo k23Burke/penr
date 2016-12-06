@@ -6,8 +6,6 @@ import fs from 'fs'
 
 export default () => {
 
-  // First we fire up Webpack an pass in the configuration we
-  // created
   let bundleStart = null;
   const compiler = Webpack(webpackConfig);
 
@@ -24,7 +22,7 @@ export default () => {
     publicPath: '/dist/',
     hot: true,
     headers: { 'Access-Control-Allow-Origin': '*' },
-    quiet: false,
+    quiet: true, //false,
     noInfo: true,
     stats: {
       colors: true

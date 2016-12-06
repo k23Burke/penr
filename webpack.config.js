@@ -4,11 +4,11 @@ module.exports = {
   context: __dirname + '/browser',
   entry: [
     'webpack-dev-server/client?http://localhost:8080',
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
+    'webpack/hot/dev-server',
     './index.jsx'
   ],
-  devtool: 'cheap-module-source-map',
+  devtool: 'eval',
+  // devtool: 'cheap-module-source-map',
   module: {
     loaders: [{
       test: /\.jsx?$/,
@@ -37,10 +37,10 @@ module.exports = {
     publicPath: '/dist/',
     filename: 'bundle.js'
   },
-  devServer: {
-    contentBase: './dist',
-    hot: true
-  },
+  // devServer: {
+  //   contentBase: './dist',
+  //   hot: true
+  // },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name:      'main', // Move dependencies to our main file
