@@ -1,5 +1,4 @@
 import chalk  from 'chalk'
-import httpProxy from 'http-proxy'
 
 import db from './db'
 import ExpressApp from './app'
@@ -9,7 +8,6 @@ const port = (process.env.PORT || 3000)
 
 const startServer = () => {
 	const app = ExpressApp(db)
-
 
 	app.listen(port, () => {
 		console.log(chalk.green(`Server locked in at port ${port}`))

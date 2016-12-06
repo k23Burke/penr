@@ -49,12 +49,14 @@ const AppPipeline = (db) => {
       console.log('request for webpack-dev-server')
       proxy.web(req, res, { target: 'http://localhost:8080'})
     })
+
     proxy.on('error', function(e) {
       console.log('Could not connect to proxy, please try again...')
     })
   } else {
     console.log('######### - IS PRODUCTION - #########')
   }
+
   // connect auth to app
   authentication(app, db)
 

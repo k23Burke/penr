@@ -8,7 +8,6 @@ module.exports = {
     './index.jsx'
   ],
   devtool: 'eval',
-  // devtool: 'cheap-module-source-map',
   module: {
     loaders: [{
       test: /\.jsx?$/,
@@ -37,10 +36,6 @@ module.exports = {
     publicPath: '/dist/',
     filename: 'bundle.js'
   },
-  // devServer: {
-  //   contentBase: './dist',
-  //   hot: true
-  // },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name:      'main', // Move dependencies to our main file

@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
-import { userLogin } from './AuthActions'
+import { userSignup } from './AuthActions'
 
-export class LoginForm extends React.Component {
+export class SignupForm extends React.Component {
   constructor (props) {
     super(props)
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this)
@@ -15,16 +15,17 @@ export class LoginForm extends React.Component {
     const email = this.refs.email.value
     const pass = this.refs.pass.value
 
-    this.props.userLogin(email, pass)
+    this.props.userSignup(email, pass)
   }
 
   render () {
     return (
       <form onSubmit={(e) => {this.handleSubmit(e)}}>
-        <input type='text' ref='email' placeholder='email' defaultValue='asd@asd' />
+        <input type='text' ref="email" placeholder="email" />
         <br/>
-        <input type='password' ref='pass' placeholder='password' /><br />
-        <button type='submit'>login</button>
+        <input type='password' ref="pass" placeholder="password" /><br />
+        <input type='password' ref="confPass" placeholder="confirm password" /><br />
+        <button type="submit">signup</button>
         {this.state.error && (
           <p>Bad login information</p>
         )}
@@ -40,7 +41,7 @@ function mapStateToProps (state, props) {
 export default connect(
   mapStateToProps,
   {
-    userLogin
+    userSignup
   }
-)(LoginForm)
+)(SignupForm)
 

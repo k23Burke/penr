@@ -1,16 +1,16 @@
 import Sequelize from 'sequelize'
 import express from 'express'
 
-import Release from '../../db/models/release'
+import Thing from '../../db/models/thing'
 
 let router = express.Router()
 
 router.get('/:id', (req, res, next) => {
-	Release
+	Thing
 	.findOne({where: {id: req.params.id}})
-	.then(release => {
-		console.log(release.dataValues)
-		res.json(release)
+	.then(thing => {
+		console.log(thing.dataValues)
+		res.json(thing)
 	})
 })
 

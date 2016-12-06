@@ -1,5 +1,5 @@
 module.exports = {
-  "DATABASE_URI": "postgres://localhost:5432/uploader",
+  "DATABASE_URI": "postgres://localhost:5432/penr",
   "SESSION_SECRET": "Secret Codez R Kool",
   "LOGGING": true
   // "TWITTER": {

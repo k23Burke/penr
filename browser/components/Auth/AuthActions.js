@@ -2,11 +2,14 @@ import { CALL_API } from 'redux-api-middleware'
 import {
   AUTH_LOGIN_REQUEST,
   AUTH_LOGIN_SUCCESS,
-  AUTH_LOGIN_FAILURE
+  AUTH_LOGIN_FAILURE,
+  AUTH_SIGNUP_REQUEST,
+  AUTH_SIGNUP_SUCCESS,
+  AUTH_SIGNUP_FAILURE
 } from '../../constants/ActionTypes'
 
 
-export function loginAttempt (username, password) {
+export function userLogin (username, password) {
 	console.log('USERNAME', username)
 	console.log('password', password)
   return {
@@ -22,11 +25,27 @@ export function loginAttempt (username, password) {
   }
 }
 
+export function userSignup (username, password) {
+  console.log('USERNAME', username)
+  console.log('password', password)
+  return {
+    [CALL_API]: {
+      endpoint: 'http://localhost:3000/signup',
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password }),
+      types: [AUTH_SIGNUP_REQUEST,
+              AUTH_SIGNUP_SUCCESS,
+              AUTH_SIGNUP_FAILURE]
+    }
+  }
+}
+
 
 export function getStuff (token) {
   return {
     [CALL_API]: {
-      endpoint: 'http://localhost:3000/api/releases/1',
+      endpoint: 'http://localhost:3000/api/users/1/releases',
       method: 'GET',
       types: ['GET_STUFF_REQUEST',
 						  'GET_STUFF_SUCCESS',

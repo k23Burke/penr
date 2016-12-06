@@ -3,7 +3,7 @@ var fs = require('fs');
 var path = require('path');
 
 import usersRoute from './users'
-import releasesRoute from './releases'
+import thingsRoute from './things'
 
 
 
@@ -21,7 +21,7 @@ router.use('/users', usersRoute)
 // //anything below this users need to be authenticated
 router.use('/', ensureAdminAuthenticated)
 
-router.use('/releases', releasesRoute)
+router.use('/things', thingsRoute)
 
 
 // Make sure this is after all of
