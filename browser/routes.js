@@ -6,12 +6,13 @@ import LoggedInHomePage from './pages/LoggedInHomePage';
 
 
 function requireAuth(nextState, replace) {
-  if (!auth.loggedIn()) {
-    replace({
-      pathname: '/',
-      state: { nextPathname: nextState.location.pathname }
-    })
-  }
+  console.log('nextState', nextState)
+  // if (!auth.loggedIn()) {
+  //   replace({
+  //     pathname: '/',
+  //     state: { nextPathname: nextState.location.pathname }
+  //   })
+  // }
 }
 
 export default function appRoutes() {

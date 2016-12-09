@@ -54,12 +54,13 @@ module.exports = function (app, db) {
   })
 }
 
-const sendSuccessResponse = (res, token, user) => {
+const sendSuccessResponse = (res, token, sqlUser) => {
+  const user = sqlUser.sanitize()
   res.json({
     success: true,
-    message: 'Enjoy your token!',
+    message: 'Enjoy your smoken!',
     token,
-    user: user.sanatize
+    user
   })
 }
 

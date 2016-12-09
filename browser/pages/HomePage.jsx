@@ -26,10 +26,12 @@ export class HomePage extends React.Component {
   render () {
     return (
       <div  className='container'>
-        <h1>Welcome to the PENR Generator</h1>
-        <h3>Goodluck app-building</h3>
-        <LoginForm />
-        <SignupForm />
+        <div className='row'>
+          <h1>Welcome to the PENR Generator</h1>
+          <h3>Goodluck app-building</h3>
+          <LoginForm />
+          <SignupForm />
+        </div>
         <button onClick={(e) => this.handleStuff(e)}>GET USER</button>
         <button onClick={(e) => this.handleLogout(e)}>Logout</button>
       </div>

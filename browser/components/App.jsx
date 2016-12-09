@@ -10,7 +10,12 @@ export class App extends React.Component {
   constructor (props) {
     super(props)
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this)
-    this.state = {}
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(!prevProps.auth.get('success') && this.props.auth.get('success')) {
+      hashHistory.push('/protect')
+    }
   }
 
   componentWillMount () {
@@ -26,8 +31,10 @@ export class App extends React.Component {
   }
 }
 
-function mapStateToProps (state) {
-  return {}
+function mapStateToProps (state, props) {
+  return {
+    auth: state.auth
+  }
 }
 
 export default connect(

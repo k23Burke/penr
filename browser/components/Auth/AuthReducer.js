@@ -11,6 +11,7 @@ export default function(state = Map(), action) {
       return state.set('attempted', true)
     case AUTH_LOGIN_SUCCESS :
       return state.set('success', true)
+                  .set('user', action.payload.user)
                   .set('token', action.payload.token)
     case AUTH_LOGIN_FAILURE :
       return state.set('success', false)

@@ -36,13 +36,14 @@ h1 {
 	border-bottom: 1px solid black;
 }
 
-input {
-	border: 0px;
-	border-bottom: 2px solid $res-blue;
+input, button {
+	width: 100%;
+	// border: 0px;
+	// border-bottom: 2px solid $res-blue;
 	display: block;
 
 	&:focus, &:hover, &:active {
-		border-bottom-color: $res-green;
+		// border-bottom-color: $res-green;
 		outline: none;
 	}
 }

@@ -10,8 +10,6 @@ import {
 
 
 export function userLogin (username, password) {
-	console.log('USERNAME', username)
-	console.log('password', password)
   return {
     [CALL_API]: {
       endpoint: 'http://localhost:3000/login',
@@ -26,8 +24,6 @@ export function userLogin (username, password) {
 }
 
 export function userSignup (username, password) {
-  console.log('USERNAME', username)
-  console.log('password', password)
   return {
     [CALL_API]: {
       endpoint: 'http://localhost:3000/signup',
