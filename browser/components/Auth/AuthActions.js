@@ -1,4 +1,5 @@
 import { CALL_API } from 'redux-api-middleware'
+import { API_ENDPOINT } from '../../constants/endPoints'
 import {
   AUTH_LOGIN_REQUEST,
   AUTH_LOGIN_SUCCESS,
@@ -12,7 +13,7 @@ import {
 export function userLogin (username, password) {
   return {
     [CALL_API]: {
-      endpoint: 'http://localhost:3000/login',
+      endpoint: `${API_ENDPOINT}/login`,
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password }),
@@ -26,7 +27,7 @@ export function userLogin (username, password) {
 export function userSignup (username, password) {
   return {
     [CALL_API]: {
-      endpoint: 'http://localhost:3000/signup',
+      endpoint: `${API_ENDPOINT}/signup`,
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password }),
@@ -37,27 +38,14 @@ export function userSignup (username, password) {
   }
 }
 
-
-export function getStuff (token) {
-  return {
-    [CALL_API]: {
-      endpoint: 'http://localhost:3000/api/users/1/releases',
-      method: 'GET',
-      types: ['GET_STUFF_REQUEST',
-						  'GET_STUFF_SUCCESS',
-						  'GET_STUFF_FAILURE']
-    }
-  }
-}
-
-export function logout () {
-  return {
-    [CALL_API]: {
-      endpoint: 'http://localhost:3000/logout',
-      method: 'GET',
-      types: ['AUTH_LOGIN_REQUEST',
-						  'AUTH_LOGIN_SUCCESS',
-						  'AUTH_LOGIN_FAILURE']
-    }
-  }
-}
+// export function logout () {
+//   return {
+//     [CALL_API]: {
+//       endpoint: 'http://localhost:3000/logout',
+//       method: 'GET',
+//       types: ['AUTH_LOGIN_REQUEST',
+// 						  'AUTH_LOGIN_SUCCESS',
+// 						  'AUTH_LOGIN_FAILURE']
+//     }
+//   }
+// }

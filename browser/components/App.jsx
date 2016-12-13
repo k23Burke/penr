@@ -16,6 +16,9 @@ export class App extends React.Component {
     if(!prevProps.auth.get('success') && this.props.auth.get('success')) {
       hashHistory.push('/protect')
     }
+    if(prevProps.auth.get('success') && !this.props.auth.get('success')) {
+      hashHistory.push('/')
+    }
   }
 
   componentWillMount () {

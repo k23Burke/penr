@@ -6,36 +6,6 @@ h1 {
   font-family: "fira-sans-2";
 }
 
-.drag-container {
-	background: gray;
-	border: 1px dashed white;
-	height: 300px;
-	width: 100%;
-
-	&.active {
-		background: black;
-	}
-
-	&.hidden {
-		display: none;
-	}
-}
-
-.header-container {
-	margin-top: 40px;
-}
-
-.tracklist-container {
-	margin-top: 50px;
-	border-top: 1px solid black;
-	// overflow: hidden;
-}
-
-.track-container {
-	padding: 10px;
-	border-bottom: 1px solid black;
-}
-
 input, button {
 	width: 100%;
 	// border: 0px;
@@ -47,19 +17,3 @@ input, button {
 		outline: none;
 	}
 }
-
-.album-cover {
-	max-width: 100%;
-}
-
-body {
-	background: green;
-}
-
-
-@media (max-width: 600px) {
-  h3 {
-    font-size: 24px;
-  }
-}
-

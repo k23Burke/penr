@@ -5,22 +5,15 @@ var path = require('path');
 import usersRoute from './users'
 import thingsRoute from './things'
 
-
-
-
 const ensureAdminAuthenticated = (req, res, next) => {
-	console.log("decoded", req.decoded)
-    if(req.decoded) {
-        next();
-    } else {
-        res.status(401).end();
-    }
+  if(req.decoded) next()
+  else res.status(401).end()
 };
 
-router.use('/users', usersRoute)
 // //anything below this users need to be authenticated
 router.use('/', ensureAdminAuthenticated)
 
+router.use('/users', usersRoute)
 router.use('/things', thingsRoute)
 
 

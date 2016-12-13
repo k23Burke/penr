@@ -8,7 +8,8 @@
     "test:watch": "npm run test -- --watch",
     "build": "NODE_ENV=production webpack -p --config ./webpack.production.config.js",
     "start": "babel-node ./server/start.js",
-    "seed": "node seed.js"
+    "seed": "node seed.js",
+    "create-db": "./seeding/createDb.sh penr"
   },
   "keywords": [],
   "author": "Kyle Burke <k23burke@gmail.com>",

@@ -12,12 +12,6 @@ export class HomePage extends React.Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this)
   }
 
-  handleStuff (e) {
-    e.preventDefault()
-
-    this.props.getStuff(this.props.user.get('token'))
-  }
-
   handleLogout (e) {
     e.preventDefault()
     this.props.logout()
@@ -28,12 +22,14 @@ export class HomePage extends React.Component {
       <div  className='container'>
         <div className='row'>
           <h1>Welcome to the PENR Generator</h1>
-          <h3>Goodluck app-building</h3>
+          <h5>Login</h5>
           <LoginForm />
+          <br/>
+          <br/>
+          <h5>Sign up</h5>
           <SignupForm />
         </div>
-        <button onClick={(e) => this.handleStuff(e)}>GET USER</button>
-        <button onClick={(e) => this.handleLogout(e)}>Logout</button>
+        <button onClick={(e) => this.handleLogout(e)}>Logout NEED TO DO!</button>
       </div>
     )
   }

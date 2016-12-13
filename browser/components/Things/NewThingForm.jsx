@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
-
+import { createThing } from './ThingActions'
 
 export class NewThingForm extends React.Component {
   constructor (props) {
@@ -14,7 +14,7 @@ export class NewThingForm extends React.Component {
     e.preventDefault()
     const name = this.refs.name.value
 
-    this.props.userLogin(email, pass)
+    this.props.createThing(name)
   }
 
   render () {
@@ -36,6 +36,6 @@ function mapStateToProps (state, props) {
 export default connect(
   mapStateToProps,
   {
-
+    createThing
   }
 )(NewThingForm)
