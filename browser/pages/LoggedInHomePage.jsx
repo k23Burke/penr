@@ -30,11 +30,6 @@ export class LoggedInHomePage extends React.Component {
               {this.props.things.map( thing =>
                 <ThingItem key={thing.get('id')} name={thing.get('name')} />
               )}
-
-              <div className='three columns'>dasfdasdfasd</div>
-              <div className='three columns'>dskfg</div>
-              <div className='two columns'>dskfg</div>
-              <div className='four columns'>loirnk</div>
             </div>
           ): <h1>Loading</h1>
         }

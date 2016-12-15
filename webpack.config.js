@@ -42,7 +42,12 @@ module.exports = {
       children:  true, // Look for common dependencies in all children,
       minChunks: 2, // How many times a dependency must come up before being extracted
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        SECRET_TOKEN: JSON.stringify('secretIsOut')
+      }
+    })
   ]
 
 };

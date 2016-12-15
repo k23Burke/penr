@@ -3,10 +3,14 @@ import { Route } from 'react-router';
 import App from './components/App';
 import HomePage from './pages/HomePage';
 import LoggedInHomePage from './pages/LoggedInHomePage';
+const SECRET_TOKEN = process.env.SECRET_TOKEN
 
 
 function requireAuth(nextState, replace) {
-  if (!(!!localStorage.getItem('secretToken'))) {
+  const authToken = localStorage.getItem(SECRET_TOKEN)
+  console.log('authToken', authToken)
+  console.log('not Logged In ? - ', !(!!authToken))
+  if (!(!!authToken)) {
     replace({
       pathname: '/',
       state: { nextPathname: nextState.location.pathname }
