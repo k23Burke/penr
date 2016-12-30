@@ -1,3 +1,4 @@
+console.log('node_env', process.env.NODE_ENV)
 import chalk  from 'chalk'
 
 import db from './db'

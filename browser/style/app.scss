@@ -1,6 +1,7 @@
 @import './normalize.css';
-@import './skeleton.css';
 @import './variables.scss';
+@import './mixins.scss';
+@import './skeleton.scss';
 
 h1 {
   font-family: "fira-sans-2";
@@ -8,12 +9,17 @@ h1 {
 
 input, button {
 	width: 100%;
-	// border: 0px;
-	// border-bottom: 2px solid $res-blue;
 	display: block;
 
 	&:focus, &:hover, &:active {
-		// border-bottom-color: $res-green;
 		outline: none;
 	}
 }
+
+// .container {
+// 	@include for-phone-only { background: red; }
+// 	@include for-tablet-portrait-up { background: orange; }
+// 	@include for-tablet-landscape-up { background: yellow; }
+// 	@include for-desktop-up { background: green; }
+// 	@include for-big-desktop-up { background: blue; }
+// }

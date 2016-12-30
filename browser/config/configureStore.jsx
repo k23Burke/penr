@@ -16,17 +16,29 @@ let createLogger = require('redux-logger')
 const loggerMiddleware = createLogger({
   stateTransformer
 })
+let enhancer
 
-
-let enhancer = compose(
-  applyMiddleware(
-    thunk,
-    middleware.apiAuthHeader,
-    apiMiddleware,
-    middleware.authLocalManager,
-    loggerMiddleware
+if(process.env.NODE_ENV === 'production') {
+  enhancer = compose(
+    applyMiddleware(
+      thunk,
+      middleware.apiAuthHeader,
+      apiMiddleware,
+      middleware.authLocalManager
+    )
   )
-)
+} else {
+  enhancer = compose(
+    applyMiddleware(
+      thunk,
+      middleware.apiAuthHeader,
+      apiMiddleware,
+      middleware.authLocalManager,
+      loggerMiddleware
+    )
+  )
+}
+
 
 export default function configureStore (initialState) {
   const store = createStore(

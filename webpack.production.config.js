@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+require('dotenv').config()
 
 module.exports = {
   context: __dirname + '/browser',
@@ -44,7 +45,9 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         BABEL_ENV: JSON.stringify('production'),
-        NODE_ENV: JSON.stringify('production')
+        NODE_ENV: JSON.stringify('production'),
+        WEBFONT_ID: JSON.stringify(process.env.WEBFONT_ID),
+        SECRET_TOKEN: JSON.stringify(process.env.SECRET_TOKEN)
       }
     })
   ]

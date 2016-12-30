@@ -2,3 +2,5 @@
 node_modules/
 src/config/AWSCredentials.js
 dist/bundle.*
+.env
+npm-debug.log

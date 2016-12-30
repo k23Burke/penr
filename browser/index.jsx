@@ -12,7 +12,7 @@ import configureStore from './config/configureStore'
 import appRoutes from './routes'
 
 const store = configureStore(initialState)
-WebFont.load({ typekit: { id: 'bsp1jzn' } })
+WebFont.load({ typekit: { id: process.env.WEBFONT_ID } })
 
 ReactDOM.render(
   <Provider store={store}>

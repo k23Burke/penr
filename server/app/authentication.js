@@ -1,10 +1,11 @@
-'use strict';
+require('dotenv').config()
+
 import path from 'path'
 import jwt from 'jsonwebtoken'
 
 module.exports = function (app, db) {
   const User = db.model('user')
-  const sessionSecret = app.getValue('env').SESSION_SECRET
+  const sessionSecret = process.env.SESSION_SECRET
 
   app.post('/login', function(req, res, next) {
 
@@ -42,7 +43,7 @@ module.exports = function (app, db) {
   app.use(function(req, res, next) {
     const token = req.body.token || req.query.token || req.headers['x-access-token']
     if (token) {
-      jwt.verify(token, app.getValue('env').SESSION_SECRET, function(err, decoded) {
+      jwt.verify(token, sessionSecret, function(err, decoded) {
         if (err) errorResponse(res, 401, 'Failed to authenticate token.')
         else {
           // if everything is good, save to request for use in other routes
@@ -58,7 +59,7 @@ const sendSuccessResponse = (res, token, sqlUser) => {
   const user = sqlUser.sanitize()
   res.json({
     success: true,
-    message: 'Enjoy your smoken!',
+    message: 'Enjoy your token!',
     token,
     user
   })

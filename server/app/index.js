@@ -1,3 +1,4 @@
+require('dotenv').config()
 import chalk from 'chalk'
 import path  from 'path'
 import util from 'util'
@@ -14,14 +15,12 @@ const isProduction = process.env.NODE_ENV === 'production'
 const rootPath = path.join(__dirname, '../../')
 const indexPath = path.join(rootPath, './dist/index.html')
 const faviconPath = path.join(rootPath, './server/app/views/favicon.png')
-const env = require(path.join(rootPath, './server/env'))
 const app = express()
 
 const AppPipeline = (db) => {
 
   app.setValue = app.set.bind(app)
   app.getValue = (path) => app.get(path)
-  app.setValue('env', env)
   app.setValue('projectRoot', rootPath)
   app.setValue('indexHTMLPath', indexPath)
 
@@ -32,19 +31,12 @@ const AppPipeline = (db) => {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
 
-  // app.setValue('faviconPath', faviconPath)
-  app.setValue('log', logMiddleware)
-
-  // TODO: get this going properly
-  // if (process.env.NODE_ENV !== 'testing') {
-    app.use(app.getValue('log'));
-  // }
-
   if (!isProduction) {
     console.log('---------- NOT PRODUCTION -------------')
     const proxy = httpProxy.createProxyServer({changeOrigin: true})
     bundle()
 
+    app.use(logMiddleware)
     app.get('/dist/*', (req, res) => {
       console.log('request for webpack-dev-server')
       proxy.web(req, res, { target: 'http://localhost:8080'})

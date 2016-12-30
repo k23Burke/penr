@@ -1,8 +1,7 @@
 import Sequelize from 'sequelize'
-import env  from '../env'
 
-const db = new Sequelize(env.DATABASE_URI, {
-  logging: env.LOGGING ? console.log : false,
+const db = new Sequelize('postgres://localhost:5432/penr', {
+  logging: process.env.NODE_ENV != 'production' ? console.log : false,
   native: false
 });
 
