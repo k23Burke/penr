@@ -15,15 +15,15 @@ router.get('/:id', (req, res, next) => {
 })
 
 
-router.get('/:id/releases', (req, res, next) => {
+router.get('/:id/things', (req, res, next) => {
 	User
 	.findOne({where: {id: req.params.id}})
 	.then(user => {
 		user.getThings()
-		.then(releases => {
-			console.log('%%%%%^% RELEASES %^%%%%%')
-			console.log(releases.dataValues)
-			res.json(releases)
+		.then(things => {
+			console.log('%%%%%^% THINGS %^%%%%%')
+			console.log(things.dataValues)
+			res.json(things)
 
 		})
 	})

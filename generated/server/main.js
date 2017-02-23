@@ -1,7 +1,8 @@
 import chalk  from 'chalk'
-
 import db from './db'
 import ExpressApp from './app'
+
+require('dotenv').config()
 
 const port = (process.env.PORT || 3000)
 

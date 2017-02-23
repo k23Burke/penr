@@ -8,8 +8,6 @@ const SECRET_TOKEN = process.env.SECRET_TOKEN
 
 function requireAuth(nextState, replace) {
   const authToken = localStorage.getItem(SECRET_TOKEN)
-  console.log('authToken', authToken)
-  console.log('not Logged In ? - ', !(!!authToken))
   if (!(!!authToken)) {
     replace({
       pathname: '/',

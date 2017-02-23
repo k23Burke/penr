@@ -1,4 +1,6 @@
-# Usage: ./pg-init.sh your_new_database_name
+#!/bin/sh
+
+# Usage: ./seeding/createDb.sh your_new_database_name
 
 datname=$1
 echo "creating database $datname"

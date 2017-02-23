@@ -17,7 +17,6 @@ export class LoggedInHomePage extends React.Component {
   }
 
   render() {
-    console.log('things', this.props.things ? this.props.things.toJS() : null)
     return (
       <div className='container'>
         <div className='row'>
